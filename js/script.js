@@ -18,7 +18,7 @@ function showPage(list, page) {
          const studentProfile = `
             <li class="student-item cf">
                <div class="student-details">
-                  <img class="avatar" src="${list[i].picture.medium}" alt="Profile Picture">
+                  <img class="avatar" src="${list[i].picture.large}" alt="Profile Picture">
                   <h3>${list[i].name.first} ${list[i].name.last}</h3>
                   <span class="email">${list[i].email}</span>
                </div>
