@@ -64,6 +64,10 @@ header h2 {
   font-size: 14px;
 }
 
+.student-search input:focus {
+  border: 1px solid red;
+}
+
 .student-search input::placeholder {
   color: #929b9e;
 }
