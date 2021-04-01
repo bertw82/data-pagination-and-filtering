@@ -3,6 +3,8 @@ Treehouse Techdegree:
 FSJS Project 2 - Data Pagination and Filtering
 */
 
+"use strict";
+
 /*
 Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
@@ -39,28 +41,28 @@ This function will create and insert/append the elements needed for the paginati
 
 function addPagination(list) {
    const paginationButtons = Math.ceil(list.length / 9);
-   console.log(paginationButtons);
    const linkList = document.querySelector('.link-list');
    linkList.innerHTML = '';
    let count = 1;
    for (let i = 0; i < paginationButtons; i++) {
       const li = `
          <li>
-            <button type="button">${count}</button>
+            <button class="js-page-button" type="button">${count}</button>
          </li>
       `;
       count += 1;
       linkList.insertAdjacentHTML('beforeend', li);
-      linkList.firstElementChild.querySelector('button').className = 'active';
    }
+   linkList.querySelector('li button').classList.add('active');
    linkList.addEventListener('click', (e) => {
-      const pageButtons = document.querySelectorAll('button[type="button"]');
+      const pageButtons = document.querySelectorAll('.js-page-button');
       for (let i = 0; i < pageButtons.length; i++) {
-         pageButtons[i].classList.remove('active');
          if (e.target === pageButtons[i]) {
             pageButtons[i].classList.add('active');
             const pageNum = pageButtons[i].textContent;
             showPage(list, pageNum);
+         } else {
+            pageButtons[i].classList.remove('active');
          }
       }
    });
@@ -70,3 +72,49 @@ function addPagination(list) {
 
 showPage(data, 1);
 addPagination(data);
+
+/*
+Create Search Form
+*/
+
+const studentsH2 = document.querySelector('.header h2');
+const searchForm = `
+   <label for="search" class="student-search">
+      <span>Search by name</span>
+      <input id="search" placeholder="Search by name...">
+      <button type="button">
+         <img src="img/icn-search.svg" alt="Search icon">
+      </button>
+   </label>
+`;
+studentsH2.insertAdjacentHTML('afterend', searchForm);
+
+/*
+* `searchFilter` function. As user types in search input student cards that match are displayed 
+*/
+
+const input = document.getElementById('search');
+
+function searchFilter(list) {
+   const searchName = input.value.toUpperCase();
+   console.log(searchName);
+   const studentArray = [];
+   for ( let i = 0; i < list.length; i++) {
+      const studentFirst = list[i].name.first;
+      const studentLast = list[i].name.last;
+      const studentName = studentFirst.toUpperCase() + " " + studentLast.toUpperCase();
+      if (studentName.indexOf(searchName) > -1) {
+         studentArray.push(list[i]);
+      } 
+   }
+   showPage(studentArray, 1);
+   addPagination(studentArray);
+}
+
+// addEventListeners for search functionality
+
+input.addEventListener('keyup', () => searchFilter(data));
+input.addEventListener('click', (e) => {
+   searchFilter(data);
+   e.preventDefault();
+});
