@@ -108,7 +108,6 @@ function searchFilter(list) {
          studentArray.push(list[i]);
       } 
    }
-   console.log(studentArray);
    if (studentArray.length === 0) {
       const message = `<h3>I'm sorry, no students match that name.</h3>`;
       studentList.innerHTML = message;
