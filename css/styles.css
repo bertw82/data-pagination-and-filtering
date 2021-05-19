@@ -3,15 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
 
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg)
-  }
-}
-
 * {
 	box-sizing: border-box;
 }
@@ -132,7 +123,6 @@ header h2 {
 	font-size: 1.2rem;
   margin-bottom: 0.45em;
   color: #1e90ff;
-  text-shadow: 1px 2px 3px rgba(0,0,0,.3);
 }
 
 .student-item .email {
@@ -181,10 +171,6 @@ header h2 {
 .pagination li button.active, .pagination li button:hover {
   background-color: #1e90ff;
   color: #fff;
-}
-
-.pagination li button:hover {
-  animation: rotation .3s;
 }
 
 .student-search span {
